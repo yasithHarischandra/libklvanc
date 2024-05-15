@@ -37,8 +37,10 @@
 
 #include <stdint.h>
 #include <stdarg.h>
+#ifdef _posix_
 #include <sys/errno.h>
 #include <sys/errno.h>
+#endif
 #include <libklvanc/klrestricted_code_path.h>
 
 #ifdef __cplusplus

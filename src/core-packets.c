@@ -20,6 +20,9 @@
  */
 
 #include <libklvanc/vanc.h>
+#ifndef _posix_
+#include "libklvanc/builtins.h"
+#endif
 
 #include "core-private.h"
 

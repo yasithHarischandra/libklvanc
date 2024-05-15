@@ -16,6 +16,10 @@
 #ifndef KLBITSTREAM_READWRITER_H
 #define KLBITSTREAM_READWRITER_H
 
+#ifndef _posix_
+#define __inline__ inline
+#endif
+
 #define KLBITSTREAM_DEBUG 0
 
 struct klbs_context_s

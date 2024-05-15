@@ -50,6 +50,7 @@ set(HEADERS
     src/libklvanc/klrestricted_code_path.h
     src/libklvanc/cache.h
     src/libklvanc/vanc-kl_u64le_counter.h
+    src/libklvanc/builtins.h
 )
 
 # Add the library target

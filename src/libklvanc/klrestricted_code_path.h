@@ -45,10 +45,18 @@
 
 #include <stdint.h>
 #include <string.h>
+#ifdef _posix_
 #include <sys/time.h>
+#else
+#include <Windows.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#ifndef _posix_
+#define __inline__ inline
 #endif
 
 struct klrestricted_code_path_block_s
