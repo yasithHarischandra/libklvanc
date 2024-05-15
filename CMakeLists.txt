@@ -75,3 +75,8 @@ install(TARGETS klvanc
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/libklvanc
         DESTINATION include
         FILES_MATCHING PATTERN "*.h")
+
+# Generate an import library for Windows
+if(WIN32)
+set_target_properties(klvanc PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
