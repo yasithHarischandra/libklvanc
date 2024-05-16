@@ -49,6 +49,7 @@
 #include <sys/time.h>
 #else
 #include <Windows.h>
+#include "builtins.h"
 #endif
 
 #ifdef __cplusplus

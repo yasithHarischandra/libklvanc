@@ -1,11 +1,21 @@
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#include <winsock.h>
 #include <stdint.h>
+
+#ifndef _BUILTINS_H
+#define _BUILTINS_H
+
+#ifndef _posix_
+#define __inline__ inline
+#endif
 
 /**
  * @brief	Alternative function for GCC builtin __builtin_parity
  * @param[x]	uint16_t x, integer value to calculate parity
  * @return      Calculated parity
  */
-int __builtin_parity(uint16_t x) {
+static __inline__ int __builtin_parity(uint16_t x) {
     int result = 0;
     while (x) {
         result ^= 1;
@@ -20,7 +30,7 @@ int __builtin_parity(uint16_t x) {
  * @param[x]	struct timeval* tp, time from epoch in seconds and microseconds
  * @return      always return 0
  */
-int gettimeofday(struct timeval* tp, struct timezone* tzp)
+static __inline__ int gettimeofday(struct timeval* tp, struct timezone* tzp)
 {
     // Note: some broken versions only have 8 trailing zero's, the correct epoch has 9 trailing zero's
     // This magic number is the number of 100 nanosecond intervals since January 1, 1601 (UTC)
@@ -40,3 +50,5 @@ int gettimeofday(struct timeval* tp, struct timezone* tzp)
     tp->tv_usec = (long)(system_time.wMilliseconds * 1000);
     return 0;
 }
+
+#endif /* _BUILTINS_H */
