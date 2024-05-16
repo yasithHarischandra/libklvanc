@@ -67,14 +67,21 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(klvanc PRIVATE -g)
 endif()
 
+# Find pthreads
+find_package(Threads REQUIRED)
+
+# Link pthreads to the library target
+target_link_libraries(klvanc PRIVATE Threads::Threads)
+
+
 # Installation directives
 install(TARGETS klvanc
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
+        RUNTIME DESTINATION bin         # For DLLs on Windows
+        LIBRARY DESTINATION lib         # For shared libraries
+        ARCHIVE DESTINATION lib)        # For static libraries
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/libklvanc
-        DESTINATION include
-        FILES_MATCHING PATTERN "*.h")
+install(FILES ${HEADERS}
+        DESTINATION include/libklvanc)  # Copy headers to include/libklvanc
 
 # Generate an import library for Windows
 if(WIN32)
